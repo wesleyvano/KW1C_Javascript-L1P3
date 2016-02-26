@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <script src="scripts/Script.js"></script>
+        <link rel="stylesheet" href="css/StyleSheet.css" type="text/css">
+    </head>
+    <body onload="onload()">
+        <div id="content">
+            <div id="koptekst">Hoger / Lager</div>
+
+            <!--
+                De invoer form
+            -->
+            <form id="invoerForm">
+                <label>Vul hier uw getal in:</label>
+                <input type="text" id="getal">
+                <button id="cntrl">Controleer Getal</button>
+                <!--
+                    De uitkomst tekst
+                -->
+                <div id="uitkomst"></div>
+
+                <!--
+                    De score
+                -->
+                <div id="score">
+                    <span id="scoreStr">Score</span> <span id="numb">0</span>
+                </div>
+
+                <div id="tijd">
+                    Tijd: <span id="timer">00:00:00</span>
+                </div>
+
+                <div id="gmtDoor">
+                    Dit spel is gemaakt door Wesley van Osch.
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

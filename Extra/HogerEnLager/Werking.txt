@@ -1,0 +1,36 @@
+var antwoord; (Het antwoord)
+var maxGetal; (het maximale getal waar var antwoord in kan vallen)
+var pogingen; (het aantal pogingen gedaan)
+var score; (de score)
+var startTijd = 60; (de tijd die je hebt om het getal te raden)
+var startPunten; (het aantal punten waarmee je start)
+
+Load:
+	- Toont popup waar je zelf kan zeggen wat het maximale getal is dat gekozen kan worden.
+	- Vult de variable antwoord in met een random getal tussen 0 en maxGetal
+	- Vult de variable startPunten in met maxGetal * 10
+	- Start Timer (onUpdate)
+	
+OnClick (Keuzen):
+	- Hoger: Het getal is hoger dan <opgegevenGetal>.
+		- Volgende melding als er een nieuw getal is ingevuld.
+	- Lager: Het getal is lager dan <opgegevenGetal>.
+		- Volgende melding als er een nieuw getal is ingevuld.
+	- Gelijk: Het getal is geraden!
+		- onCorrectAnswer (zie voor meer info)
+
+		- Laat de score zien
+		- Button "Controleer getal" veranderen naar "Start nieuw spel
+		
+onCorrectAnswer (Correct antwoord):
+	- Laat scores zien van de voorgaande rondes en ook van deze ronde en het gemiddelden.
+		- OnClick(OK)
+			- Laat de score zien
+			- Button "Controleer getal" veranderen naar "Start nieuw spel"
+
+onUpdate (tijdVerstreken)(Tijd verstreken):
+	- Veranderd de tijd aanduiding
+	- startPunten -= tijdVerstreken * 10;
+		- Veranderd de score (tekst)
+	- tijdVerstreken < (startTijd - 10)
+		- Maakt de tijd rood

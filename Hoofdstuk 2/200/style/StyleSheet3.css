@@ -1,0 +1,66 @@
+/* het registratieformulier */
+#formRegistratie 
+{
+	/* lay-out eigenschappen instellen */
+	width:30em;					/* breedte */
+	background-color:#185473; 	/* groenblauwe achtergrond */
+	border: 2px solid #000000; 	/* zwarte rand */
+	padding: 1em;				/* binnenruimte instellen */
+	/* teksteigenschappen instellen  */
+	color: #FFFFFF;
+	font-weight: bold;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 1em;
+	letter-spacing:0.1em; 		/* beetje witruimte tussen de letters */
+}
+
+/* koptekst in registratieformulier */
+#formRegistratie h2 
+{
+	text-align:center;	/* koptekst centreren */
+}
+
+/* Opmaak voor elke rij van het formulier */
+.rij 
+{
+	display:block; 		/* weergeven als block */
+	clear:both;			/* altijd op nieuwe regel beginnen */
+	margin-top:1em; 	/* bovenruimte ten opzichte van voorgaande element */
+	height: 2em; 		/* hoogte van de rij*/
+	border-top:1px solid #579BB1; /* bovenrand instellen */
+	padding-top:1em; 	/* ruimte tussen de rand en de inhoud */
+}
+
+label 
+{
+	width:12em;		/* breedte */
+	float:left;		/* links floaten binnen parent element <div> */
+}
+
+/* opmaak van de invoervelden */
+input.tekstveld 
+{
+	height:1.3em;
+	width:12em;
+	font-size:1.2em;
+	border: 1px solid #6699CC;
+}
+
+/* opmaak van de verzendknop */
+input.aanmeldKnop 
+{
+	float: right;
+	padding:0.5em 1em;
+	border: 2px solid #FFFFFF;
+	background-color:#95C815;
+	color:#FFFFFF;
+	font-size:1em;
+	font-weight:bold;
+}
+
+/* opmaak bij een mouseover */
+input.aanmeldKnop:hover 
+{
+	color:#6699CC;
+	border-color:#6699CC;
+}
