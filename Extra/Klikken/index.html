@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <script src="libs/jquery-ui/external/jquery/jquery.js"></script>
+        <script src="libs/jquery-ui/jquery-ui.min.js"></script>
+
+        <script src="scripts/Script.js"></script>
+        <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css" type="text/css">
+        <link rel="stylesheet" href="css/StyleSheet.css" type="text/css">
+    </head>
+    <body>
+        <div id="content">
+            <!--
+                Start knop
+            -->
+            <button id="buttonStart" onclick="startGame();">Start het spel</button>
+            
+            <!--
+                Gebied waar de knop zich kan verplaatsen
+            -->
+            <div id="knopArea"></div>
+
+            <!--
+                De score
+            -->
+            <div id="score">
+                <table>
+                    <tr>
+                        <th>Positie</th>
+                        <th>Score</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td id="score0"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td id="score1"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td id="score2"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="feedback">
+                <p id="keer"></p>
+                <p id="plaats"></p>
+            </div>
+        </div>
+    </body>
+</html>

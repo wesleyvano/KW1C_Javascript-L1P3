@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Javascript &amp; jQuery opdrachten</title>
+        <link href="_css/site.css" rel="stylesheet">
+        <script src="_js/jquery-1.7.2.min.js"></script>
+        <script src="scripts/Script.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+          <div class="header">
+            <p class="logo">JavaScript <i>&</i> jQuery <i class="mm">KW1C<br>ICT-academie</i></p>
+          </div>
+          <div class="content">
+            <div class="main">
+              <h1>Javascript opdracht 4D For en while lussen en string functies</h1>
+	          <form id="frm-timer">
+		        <p id="langezin">Minister Jet Bussemaker van Onderwijs, Cultuur en Wetenschap bracht maandag een bezoek aan SintLucas locatie Boxtel. Vanuit het Koning Willem College waren hierbij aanwezig: Cor van Gerven, Erwin Brouwer en de leerlingen Gezel schilder Rick van Hoof, Wesley Stolzenbach en de Gezel stukadoor Rick van der Werf. Doel van het bezoek van de minister was om de titel Meester, die de excellentie van iemands vakmanschap bestempelt, te bespreken en te kijken of deze binnen het mbo ingezet kan worden. Bijvoorbeeld bij een 'moderne' opleiding zoals Game art. </p>
+		        <p>
+                        <input type="button" value="Keer de zin om" onclick="keerZinOm();">
+		        </p>
+		        <p>
+				        Klik op bovenstaande button en de zin wordt volledig omgedraaid. Druk je nog een keer op de button dan wordt die zin weer omgedraaid. Onderstaande code staat in de functie keerZinOm() die voor de omkering zorgt.
+				        1) Leg deze code uit en wat doet precies zin.substr(x,1) ?
+		        </p>
+		        <pre>
+                    //Deze code keert de zin om x is een index van de zin
+			        var omgekeerdezin;
+			        for (var x=0; x&lt;zin.length; x++) {
+                        //Een substr waarbij alles vanaf x tot 1 wordt opgeslagen en bij de rest wordt gedaan
+				        omgekeerdezin = zin.substr(x,1) + omgekeerdezin;
+			        }
+			        setZin(omgekeerdezin);
+			        getZin();
+		        </pre>
+		        <p>
+			        Programmeer de functie zoekLetter. Deze functie zoekt de letter die is ingevuld in onderstaande invoerveld in de bovenstaande zin en geeft weer op welke posities en hoevaak deze letter daarin voorkomt. Geef met alert() de posities en het aantal aan.
+		        </p>
+		        <p>
+				        <input  size="1" maxlength="1" type="text" name="letter" id="letter">&nbsp;
+                        <input type="button" value="Zoek letter" onclick="zoekLetter();">
+		        </p>
+
+		        <div id="feedback"></div>
+
+	          </form>
+                 <p id =”status”>
+                  </p>
+
+            </div>
+          </div>
+          <div class="footer">
+            <p>JavaScript &amp; jQuery, W. van Bijnen en A. Saebu, BOL 4 - opleiding tot Applicatie ontwikkelaar (2013).</p>
+          </div>
+        </div>
+    </body>
+</html>

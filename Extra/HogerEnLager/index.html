@@ -4,10 +4,14 @@
     <head>
         <meta charset="utf-8" />
         <title></title>
+        <script src="libs/jquery-ui/external/jquery/jquery.js"></script>
+        <script src="libs/jquery-ui/jquery-ui.min.js"></script>
+
         <script src="scripts/Script.js"></script>
+        <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css" type="text/css">
         <link rel="stylesheet" href="css/StyleSheet.css" type="text/css">
     </head>
-    <body onload="onload()">
+    <body onload="onLoad();">
         <div id="content">
             <div id="koptekst">Hoger / Lager</div>
 
@@ -16,8 +20,9 @@
             -->
             <form id="invoerForm">
                 <label>Vul hier uw getal in:</label>
-                <input type="text" id="getal">
-                <button id="cntrl">Controleer Getal</button>
+                <input type="text" id="getal" onsubmit="">
+                <button id="cntrl" type="button" onclick="onClick();">Controleer Getal</button>
+
                 <!--
                     De uitkomst tekst
                 -->
@@ -31,7 +36,38 @@
                 </div>
 
                 <div id="tijd">
-                    Tijd: <span id="timer">00:00:00</span>
+                    Tijd: <span id="timer">0</span>
+                </div>
+
+                <div id="scoreboard" hidden="hidden">
+                    <div id="uitkomstScore">
+                        <table>
+                            <tr>
+                                <td>1.</td>
+                                <td id="plaats0">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td id="plaats1">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td id="plaats2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td id="plaats3">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>5. </td>
+                                <td id="plaats4">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><b>Gemiddelde</b></td>
+                                <td id="gemiddelde">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <div id="gmtDoor">

@@ -1,0 +1,18 @@
+1. p
+2. .example
+3. .main
+4. #lijstje
+5. .main h2
+6. div>h2
+7. h1+div
+8. Selecteerd alle input elementen
+9. De eerste p in het document
+10. Selecteert alle even getallen
+11. Selecteert alle oneven getallen
+12. Selecteert de eerste 3 elementen
+13. Selecteert alle dikgedrukte elementen
+14. Selecteert alle elementen in een a met een href attribuut met anchor
+15. Selecteert alle elementen in een a met een href attribuut die begint met http://www
+16. Selecteert alle elementen in een a met een href attribuut die begint met http://www
+17. Selecteerd alle checked checkboxen
+18. Selecteerd alle elementen die niet aan staan (disabled)

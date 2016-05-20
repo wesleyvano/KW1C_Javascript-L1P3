@@ -1,0 +1,16 @@
+h2 
+{
+	background: url(_images/open.png) no-repeat 0 11px;
+	padding: 10px 0 0 25px;
+	cursor: pointer;
+}
+
+h2.close 
+{
+	background-image: url(_images/close.png);
+}
+
+.answer 
+{
+	margin-left: 25px;	
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <!-- Linken JS bestand -->
+        <script src="Script.js"></script>
+        <!-- Linken CSS bestand -->
+        <link type="text/css" href="StyleSheet.css" rel="stylesheet">
+        <title></title>
+    </head>
+    <body>
+        <!-- De kleuren knoppen container -->
+        <div id="colors">
+            <div id="red" onclick="changeColor('red')">&nbsp;</div>
+            <div id="orange" onclick="changeColor('orange')">&nbsp;</div>
+            <div id="green" onclick="changeColor('green')">&nbsp;</div>  
+            <div id="blue" onclick="changeColor('blue')">&nbsp;</div>   
+        </div>
+
+        <!-- Grijze vlak -->
+        <div id="container">
+            <form>
+                <!-- INVOER -->
+                <div class="divider">
+					STRING INVOER
+				</div>
+                <!-- input veld voor een string -->
+                <label>
+					Voer hier een string in:
+				</label>
+                <input type="text" id="stringInvoer">
+                
+                <!-- FUNCTIES -->
+                <div class="divider">
+					FUNCTIES
+				</div>
+                
+                <!-- FUCNTIE: uppercase en lowercase -->
+                <fieldset>
+                    <!-- radio button voor keuze -->
+                    <legend>
+						UPPERCASE & lowercase
+					</legend>
+                    <!-- hoofdletters -->
+                    <input type="radio" name="upLow" value="upper" id="upper" checked="checked">
+                    <label>
+						Zet om in hoofdletters.
+					</label>
+                    <br>
+                    <!-- kleine letters -->
+                    <input type="radio" name="upLow" value="lower" id="lower">
+                    <label>
+						Zet om in kleine letters.
+					</label>
+                    <br>
+                    <!-- button om uit te voeren -->
+                    <input type="button" value="Uitvoeren" onclick="naarHoofdNaarKlein()">
+                </fieldset>
+
+                <!-- FUCNTIE: indexOf -->
+                <fieldset>
+                    <legend>
+						indexOf
+					</legend>
+                    <label>
+						Laat mij de positie van de letter 
+					</label>
+                    <!-- textbox voor letter invoer -->
+                    <input type="text" id="letterInvoer"> 
+                    <label>
+						zien.
+					</label>
+                    <br>
+                    <!-- Button om uit te voeren -->
+                    <input type="button" value="Uitvoeren" onclick="bepaalIndex()">
+                </fieldset>
+
+                <!-- FUCNTIE: substr(ing) -->
+                <fieldset>
+                    <legend>
+						substring
+					</legend>
+                    <label>
+						Laat mij de 
+					</label>
+                    <!-- dropdown list voor keuze eerste letter -->
+                    <select id="substringVan">
+                        <option value="0">eerste</option>
+                        <option value="1">tweede</option>
+                        <option value="2">derde</option>
+                        <option value="3">vierde</option>
+                        <option value="4">vijfde</option>
+                        <option value="5">zesde</option>
+                        <option value="6">zevende</option>
+                        <option value="7">achtste</option>
+                        <option value="8">negende</option>
+                    </select> 
+                     <!-- dropdown list voor keuze laatste letter -->
+                    <label>
+						tot en met de
+					</label>
+                      <select id="substringTot">
+                        <option value="1">
+							tweede
+						</option>
+                        <option value="2">
+							derde
+						</option>
+                        <option value="3">
+							vierde
+						</option>
+                        <option value="4">
+							vijfde
+						</option>
+                        <option value="5">
+							zesde
+						</option>
+                        <option value="6">
+							zevende
+						</option>
+                        <option value="7">
+							achtste
+						</option>
+                        <option value="8">
+							negende
+						</option>
+                        <option value="9">
+							tiende
+						</option>
+                    </select> 
+                    <label>
+						letter zien.
+					</label>
+                    <br>
+                    <!-- Button om uit te voeren -->
+                    <input type="button" value="Uitvoeren" onclick="vanTot()">
+                </fieldset>
+
+                <!-- FUCNTIE: replace -->
+                <fieldset>
+                    <legend>
+						replace
+					</legend>
+                    <!-- invoer te vervangen letter -->
+                    <label>
+						Verander de letter
+					</label>
+                    <input type="text" id="from">
+                    <label>
+						in de letter
+					</label>
+                    <!-- invoer vervangen door de letter -->
+                    <input type="text" id="to">
+                    <label>
+						.
+					</label>
+                    <!-- Button om uit te voeren -->
+                    <input type="button" value="Uitvoeren" onclick="replace()">
+                </fieldset>
+                
+                <!-- Functie Willekeurig-->
+                <fieldset>
+                    <legend>
+						Willekeurige Volgorde
+					</legend>
+                    <!-- button om uit te voeren -->
+                    <input type="button" value="Uitvoeren" onclick="randomOrder()">
+                </fieldset>
+
+                <!-- UITVOER -->
+                <div class="divider">
+					UITVOER
+				</div>
+                <p id="resultaat">
+					Er is nog geen functie uitgevoerd!
+				</p>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Javascript &amp; jQuery opdrachten
+			</title>
+		<link href="_css/site.css" rel="stylesheet">
+        <script src="_js/jquery-1.7.2.min.js"></script>
+        <script src="scripts/Script.js"></script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<p class="logo">
+					JavaScript & jQuery 
+					<br>
+					ICT-academie
+				</p>
+			</div>
+			<div class="content">
+				<div class="main">
+					<h1>
+						Javascript opdracht xxx
+					</h1>
+                    <form id="order">
+                        <fieldset>
+                            <legend>Data:</legend>
+                            <div>
+                                <label>Vervoer: </label><input name="vervoer" type="radio" value="voet">te voet<input name="vervoer" type="radio" value="fiets">te fiets<input name="vervoer" type="radio" value="auto">met de auto
+                            </div>
+                            <div>
+                                <label>Plek:</label>
+                                <input name="weg" type="radio" value="stoep">stoep
+                                <input name="weg" type="radio" value="straat">straat in de stad
+                                <input name="weg" type="radio" value="autoweg">autoweg
+                                <input name="weg" type="radio" value="snelweg">snelweg
+                            </div>
+                            <label>Snelheid:</label>
+                            <input id="snelheid" name="snelheid" size="3" type="text" value="0" maxlength="3">&nbsp;km/h
+                        </fieldset>
+                        <input type="button" name="Verander" value="Wijzig" onclick="javascript:wijzigSnelheid()">
+                    </form>
+                    <p id ="status">
+                    </p>
+				</div>
+			</div>
+			<div class="footer">
+				<p>
+					JavaScript &amp; jQuery, W. van Bijnen, A. Saebu & R. Gijsbrechts, BOL 4 - opleiding tot Applicatie ontwikkelaar (2016).
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

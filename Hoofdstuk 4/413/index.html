@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Javascript &amp; jQuery opdrachten</title>
+    <link href="_css/site.css" rel="stylesheet">
+
+    <script src="_js/jquery-1.7.2.min.js"></script>
+    <script src="scripts/Script.js"></script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+          <div class="header">
+            <p class="logo">JavaScript <i>&</i> jQuery <i class="mm">KW1C<br>ICT-academie</i></p>
+          </div>
+          <div class="content">
+            <div class="main">
+              <h1>Javascript opdracht 413</h1>
+	          <form id="order">
+		        <fieldset>
+			        <legend></legend>
+			        <label>Voer een getal in:</label>
+			        <input id="getal" name="getal" size="3" type="text" value="0" maxlength="3">
+			        <p>Lijst:     <span id="lijst">lege lijst</span></p>
+			        <p>Resultaat: <span id="resultaat"></span></p>
+		        </fieldset>
+		        <fieldset>
+		        <input type="button" name="b1" value="Voeg toe" onclick="javascript:add()">
+		        <input type="button" name="b2" value="Aantal elementen" onclick="javascript:countLijst()">
+		        <input type="button" name="b3" value="Aantal unieke elementen" onclick="javascript:countDistinct()">
+		        <input type="button" name="b4" value="Verwijder eerste" onclick="javascript:deleteFirst()">
+		        <input type="button" name="b5" value="Verwijder laatste" onclick="javascript:deleteLast()">
+		        <input type="button" name="b6" value="Som" onclick="javascript:sum()">
+		        <input type="button" name="b7" value="Gemiddelde" onclick="javascript:average()">
+		        </fieldset>
+	          </form>
+	          <p id="status">
+	          </p>
+            </div>
+          </div>
+          <div class="footer">
+            <p>JavaScript &amp; jQuery, W. van Bijnen en A. Saebu, BOL 4 - opleiding tot Applicatie ontwikkelaar (2013).</p>
+          </div>
+        </div>
+    </body>
+</html>

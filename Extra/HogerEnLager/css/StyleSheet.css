@@ -110,3 +110,8 @@
     height: 40px; /* Veranderd de hoogte */
     background-color: orange; /* Veranderd de achtergrondskleur */
 }
+
+#uitkomstScore table, td
+{
+    border: 1px solid black; /* Voegt een rand toe */
+}

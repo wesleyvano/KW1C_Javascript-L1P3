@@ -1,0 +1,24 @@
+Als je te voet bent mag je alleen op de stoep lopen. Een voetganger loopt niet harder dan 6 km/u. Als fietser mag je
+juist niet op de stoep fietsen en mag je ook niet op de autoweg of op de snelweg. Als fietser kun je maximaal 25 km/u.
+Met de auto mag je niet op de stoep. In de straat mag je maximaal 50 km/u, op de autoweg 100km/u en op de
+snelweg maximaal 120km/u. Geef een melding als je in overtreding bent, en geef de reden.
+
+Voet
+	- Op stoep
+	- niet harder dan 6 km/u
+Fiets
+	- Niet op de stoep
+	- Niet op autoweg of snelweg
+	- Maximaal 25 km/u
+Auto
+	- Niet op de stoep
+	- Straat
+		- 50 km/u
+	- Autoweg
+		- 100 km/u
+	- Snelweg
+		- 120 km /u
+		
+Geef een melding als je in overtreding bent, en geef de reden.
+Als je niet in overtreding bent meld dan de status (wat is je vervoer, plek en met welke snelheid) met de functie
+meldStatus().

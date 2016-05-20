@@ -1,0 +1,80 @@
+body
+{
+    background-color: #ff6a00;
+    color: white;
+    font-family: Tahoma;
+	/* Scrollbar verwijderen */
+    overflow: hidden;
+}
+
+/* Grijze vlak met inhoud */
+#container
+{
+    width: 600px;
+    height: 825px;
+	/* Exact in het midden plaatsen van het venster */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+	/* ------------ */
+    background-color: #808080;
+    padding: 10px;
+}
+
+/* Oranje divider */
+.divider
+{
+    height: 20px;
+    background-color: #ff6a00;
+    margin: 25px;
+    text-align: center;
+}
+
+/* Opmaak button functie uitvoeren */
+input[type=button]
+{
+    background-color: #484848;
+    color: #ff6a00;
+    width: 50%;
+    border: 2px solid black;
+    text-align: center;
+	/* Uitlijning button */
+    margin: 10px 25% 10px 25%;
+}
+
+#colors
+{
+    width: 20%; /* Veranderd de breedte */
+    height: 100px; /* Veranderd de hoogte */
+    transform: translate(375%, 0%); /* Veranderd de positie */
+}
+
+/* Alle kinderen van de div genaamd colors */
+#colors > *
+{
+    display: inline-block; /* Zorgt ervoor dat alles op 1 rij komt */
+    width: 10%; /* Veranderd de breedte */
+    height: 25%; /* Veranderd de hoogte */
+    border: 4px solid black; /* Veranderd de rand */
+}
+
+#colors #red
+{
+    background-color: red; /* Veranderd de kleur*/
+}
+
+#colors #orange
+{
+    background-color: orange; /* Veranderd de kleur*/
+}
+
+#colors #green
+{
+    background-color: green; /* Veranderd de kleur*/
+}
+
+#colors #blue
+{
+    background-color: blue; /* Veranderd de kleur*/
+}

@@ -1,0 +1,27 @@
+/* Blok aan de rechter kant */
+.pullquoteRight {
+	float: right;
+	clear: right;
+	width: 200px;
+	border: 1px solid black;
+	padding: 10px;
+	font-size: 20px;
+	background-color:rgb(195,151,51);
+	margin: 20px 0 10px 10px;
+	font-style: italic;
+	color: rgb(255,255,255);
+}
+
+/* Blok aan de linker kant */
+.pullquoteLeft {
+	float: left;
+	clear: left;
+	width: 200px;
+	border: 1px solid black;
+	padding: 10px;
+	font-size: 20px;
+	background-color:rgb(195,151,51);
+	margin: 20px 0 10px 10px;
+	font-style: italic;
+	color: rgb(255,255,255);
+}
