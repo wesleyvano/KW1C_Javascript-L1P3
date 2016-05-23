@@ -5,7 +5,7 @@
 *   License: MIT - https://github.com/mrdoob/three.js/blob/master/LICENSE
 */
 var container;
-var camera, scene, renderer;
+var camera, scene, renderer, light;
 
 //Alle kubuses
 var cubes = [];
@@ -23,19 +23,22 @@ init();
 */
 function init()
 {
-    $(document).ready(function()
-    {
+    $(document).ready(function () {
         //Container
         container = document.createElement('div');
         document.getElementById('container').appendChild(container);
 
         //Camera
         camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
+        camera.position.y = 150;
         camera.position.z = 500;
-        
+
         //De Scene
         scene = new THREE.Scene();
-       
+
+        //Licht
+        light = new THREE.AmbientLight(0x404040, 1.5);
+
         //Laad de texture
         var loader = new THREE.TextureLoader();
         loader.setPath('_images/textures/');
@@ -49,16 +52,16 @@ function init()
 
         //Maakt de materialen aan
         var materials = [
-            new THREE.MeshBasicMaterial({ map: texture0 }),
-            new THREE.MeshBasicMaterial({ map: texture1 }),
-            new THREE.MeshBasicMaterial({ map: texture2 }),
-            new THREE.MeshBasicMaterial({ map: texture3 }),
-            new THREE.MeshBasicMaterial({ map: texture4 }),
-            new THREE.MeshBasicMaterial({ map: texture5 })
+            new THREE.MeshLambertMaterial({ map: texture0 }),
+            new THREE.MeshLambertMaterial({ map: texture1 }),
+            new THREE.MeshLambertMaterial({ map: texture2 }),
+            new THREE.MeshLambertMaterial({ map: texture3 }),
+            new THREE.MeshLambertMaterial({ map: texture4 }),
+            new THREE.MeshLambertMaterial({ map: texture5 })
         ];
 
         //De geometry en het materiaal wordt aangemaakt en gekoppeld
-        var geometry = new THREE.BoxGeometry(100, 100, 100, 1, 1, 1);
+        var geometry = new THREE.BoxGeometry(100, 100, 100);
         var material = new THREE.MeshFaceMaterial(materials);
 
         //Voegt alle dobbelstenen toe
@@ -69,13 +72,28 @@ function init()
         addCube(geometry, material, 400, 150);
 
         //De Renderer
-        renderer = new THREE.WebGLRenderer();
-        renderer.setClearColor(0xf0f0f0);
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setClearColor(0x000000);
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
+        renderer.gammaInput = true;
+        renderer.gammaOutput = true;
+
+        scene.add(light);
 
         container.appendChild(renderer.domElement);
+        emptyAnimate();
     });
+}
+
+/*  Begin render
+*   geen parameters
+*   geen return
+*/
+function emptyAnimate()
+{
+    requestAnimationFrame(emptyAnimate);
+    render(-1);
 }
 
 /*  De animatie
@@ -89,31 +107,17 @@ function animate()
 
     var rotatie = 0;
 
-    if(oog == 1)
+    switch(oog)
     {
-        rotatie = 4.75;
+        case 1: rotatie = 4.6; break;
+        case 2: rotatie = 7.75; break;
+        case 3: rotatie = 7.8; break;
+        case 4: rotatie = 4.75; break;
+        case 5: rotatie = 6.25; break;
+        case 6: rotatie = 9.5; break;
+        default: rotatie = 0; break;
     }
-    else if(oog == 2)
-    {
-        rotatie = 8;
-    }
-    else if(oog == 3)
-    {
-        rotatie = 8;
-    }
-    else if(oog == 4)
-    {
-        rotatie = 4.75;
-    }
-    else if(oog == 5)
-    {
-        rotatie = 6.50;
-    }
-    else if(oog == 6)
-    {
-        rotatie = 9.5;   
-    }
-    
+        
     if(((oog == 3 || oog == 4 || oog == 5 || oog == 6) && cube.rotation.x < rotatie) || ((oog == 1 || oog == 2) && cube.rotation.y < rotatie))
     {
         requestAnimationFrame(animate);
