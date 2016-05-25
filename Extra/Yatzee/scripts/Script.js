@@ -167,14 +167,10 @@ $(document).ready(function ()
 */
 function showScoreboard()
 {
-    //Voegt opties toe
+    //Alle benodige informatie om opties te generen
     var gegooid = getGegooid();
-    
-    for (var i = 0; i < gegooid.length; i++)
-    {
-        var item = gegooid[i];
-        console.log(item[0] + ':' + item[1]);
-    }
+    var combinaties = getCombinaties(gegooid);
+    addOptions(combinaties, gegooid);
 
     //Laat een dialog zien
     var dialog = $('#scoreboard').dialog({
@@ -215,7 +211,82 @@ function getGegooid()
 */
 function getCombinaties(gegooid)
 {
-    
+    var combinaties = [];
+    for (var i = 0; i < gegooid.length; i++)
+    {
+        var item = gegooid[i];
+        var key = item[0];
+        var value = item[1];
+
+        if(value > 0)
+        {
+            if(key == 1 && scoreboard[0][1] == 0)
+            {
+                combinaties.push('Enen');
+            }
+
+            if(key == 2 && scoreboard[1][1] == 0)
+            {
+                combinaties.push('Tweeën');
+            }
+
+            if(key == 3 && scoreboard[2][1] == 0)
+            {
+                combinaties.push('Drieën');
+            }
+
+            if(key == 4 && scoreboard[3][1] == 0)
+            {
+                combinaties.push('Vieren');
+            }
+
+            if(key == 5 && scoreboard[4][1] == 0)
+            {
+                combinaties.push('Vijven');
+            }
+
+            if(key == 6 && scoreboard[5][1] == 0)
+            {
+                combinaties.push('Zessen');
+            }
+        }
+    }
+
+    return combinaties; 
+}
+
+/*  Voegt alle valid opties toe
+*   @param1: De combinaties die moeten worden toegevoegd
+*   @param2: Het aantal keer dat een aantal ogen voor komt
+*   Geen return
+*/
+function addOptions(combinaties, aantal)
+{
+    console.log(aantal);
+    for(var i = 0; i < combinaties.length; i++)
+    {
+        var naam = combinaties[i];
+
+        //Nieuwe rij
+        var row = document.createElement('tr');
+
+        //Optie Naam
+        var optieData = document.createElement('td');
+        var optieNaam = document.createTextNode(naam);
+        optieData.appendChild(optieNaam);
+
+        //Optie Radiobox
+
+        //Optie Score
+
+
+        //Voeg alle data toe aan de rij
+        row.appendChild(optieData);
+
+        //Voegt de rij toe aan de tabel
+        document.getElementById('score').appendChild(row);
+        console.log(naam);
+    }
 }
 
 /*  Of de score optie al eens is gebruikt
