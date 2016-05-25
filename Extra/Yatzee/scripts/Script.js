@@ -15,6 +15,17 @@ var beurt = 1;
 
 var enabled = false;
 
+//Het scoreboard
+var scoreboard =
+[
+    ['Enen', 0],
+    ['Tweeën', 0],
+    ['Drieën', 0],
+    ['Vieren', 0],
+    ['Vijven', 0],
+    ['Zessen', 0],
+];
+
 function randomGetal() 
 {
     var getal = Math.floor((Math.random()*6)+1);
@@ -122,6 +133,8 @@ $(document).ready(function ()
 
             if (rolls == 0) 
             {
+                showScoreboard();
+
                 $('#werp1').text('Volgende Beurt');
             }
 
@@ -147,3 +160,71 @@ $(document).ready(function ()
         }
     });
 });
+
+/*  Laat de scoreboard zien
+*   geen parameters
+*   geen return
+*/
+function showScoreboard()
+{
+    //Voegt opties toe
+    var gegooid = getGegooid();
+    
+    for (var i = 0; i < gegooid.length; i++)
+    {
+        var item = gegooid[i];
+        console.log(item[0] + ':' + item[1]);
+    }
+
+    //Laat een dialog zien
+    var dialog = $('#scoreboard').dialog({
+        width: "75%"
+    });
+}
+
+/*  Deze berekent alle gegooide ogen met hoeveelheid
+*   geen parameters
+*   @return: alle gegooide ogen met aantal
+*/
+function getGegooid()
+{
+    var gegooid =
+    [
+        [1, 0],
+        [2, 0],
+        [3, 0],
+        [4, 0],
+        [5, 0],
+        [6, 0]
+    ];
+
+    for (var i = 0; i < stenen.length; i++)
+    {
+        var punt = parseInt($('#d' + (i + 1)).html());
+        var waarde = gegooid[punt - 1][1];
+
+        gegooid[punt - 1][1] = waarde + 1;
+    }
+
+    return gegooid;
+}
+
+/*  Zorgt ervoor dat alle mogelijke combinaties worden berekent
+*   @param1: Multi-Dimensional array met alle ogen en aantal keer gegooid
+*   @return: Alle mogelijke combinaties
+*/
+function getCombinaties(gegooid)
+{
+    
+}
+
+/*  Of de score optie al eens is gebruikt
+*   @param1: De score optie als iteratie in de array
+*   @return: Of de score gebruikt is
+*/
+function isScoreUsed(optie)
+{
+    var score = scoreboard[optie];
+
+    return score[1] > 0;
+}

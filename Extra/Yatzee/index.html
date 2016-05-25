@@ -3,10 +3,18 @@
     <head>
         <meta charset="UTF-8">
         <title>Javascript &amp; jQuery opdrachten</title>
+        
+        <!-- CSS/StyleSheet -->
         <link href="_css/site.css" rel="stylesheet">
         <link href="_css/yahtzee.css" rel="stylesheet">
-        <script src="_js/three.min.js"></script>
+        <link href="_css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+        
+        <!-- Libraries/Javascript -->
         <script src="_js/jquery-1.7.2.min.js"></script>
+        <script src="_js/jquery-ui.min.js"></script>
+        <script src="_js/three.min.js"></script>
+
+        <!-- Scripts/Javascripts -->
         <script src="scripts/Rendering.js"></script>
         <script src="scripts/Script.js"></script>
     </head>
@@ -28,12 +36,24 @@
                     <div id="rolls">Rolls Over 3</div>
                     <div id="beurt">Beurt 1</div>
                     <div id="totaal"></div>
-                <div id="container"></div>
+                    <div id="container"></div>
                 </div>
             </div>
             <div class="footer">
                 <p>JavaScript &amp; jQuery, W. van Bijnen en A. Saebu, BOL 4 - opleiding tot Applicatie ontwikkelaar (2013).</p>
             </div>
+        </div>
+        <div id="scoreboard" hidden>
+            <form>
+                <label>Scorelijst</label>
+                <table id="score">
+                    <tr>
+                        <td>Opties</td>
+                        <td>Selecteer</td>
+                        <td>Score</td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </body>
 </html>
