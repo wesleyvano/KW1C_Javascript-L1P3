@@ -26,6 +26,9 @@ var scoreboard =
     ['Zessen', 0],
 ];
 
+//Aantal gebruikte opties
+var used = 0;
+
 function randomGetal() 
 {
     var getal = Math.floor((Math.random()*6)+1);
@@ -167,6 +170,9 @@ $(document).ready(function ()
 */
 function showScoreboard()
 {
+    //Reset de opties van ten voren
+    $('#score').empty();
+
     //Alle benodige informatie om opties te generen
     var gegooid = getGegooid();
     var combinaties = getCombinaties(gegooid);
@@ -174,7 +180,11 @@ function showScoreboard()
 
     //Laat een dialog zien
     var dialog = $('#scoreboard').dialog({
-        width: "75%"
+        width: '75%',
+        closeOnEscape: false,
+        open: function(event, ui) {
+            $('.ui-dialog-titlebar-close', ui.dialog | ui).hide();
+        }
     });
 }
 
@@ -262,10 +272,54 @@ function getCombinaties(gegooid)
 */
 function addOptions(combinaties, aantal)
 {
-    console.log(aantal);
+    //Optie Namen
+    var row = document.createElement('tr');
+
+    var d1 = document.createElement('td');
+    d1.appendChild(document.createTextNode('Opties'));
+    row.appendChild(d1);
+
+    var d2 = document.createElement('td');
+    d2.appendChild(document.createTextNode('Selecteer'));
+    row.appendChild(d2);
+
+    var d3 = document.createElement('td');
+    d3.appendChild(document.createTextNode('Score'));
+    row.appendChild(d3);
+
+    document.getElementById('score').appendChild(row);
+
+
     for(var i = 0; i < combinaties.length; i++)
     {
         var naam = combinaties[i];
+        var score = 0;
+
+        //Score bepaling
+        switch(naam)
+        {
+            case 'Enen': 
+            score = (aantal[0][1] * 1);
+            break;
+            case 'Tweeën':
+            score = (aantal[1][1] * 2);
+            break;
+            case 'Drieën':
+            score = (aantal[2][1] * 3);
+            break;
+            case 'Vieren':
+            score = (aantal[3][1] * 4);
+            break;
+            case 'Vijven':
+            score = (aantal[4][1] * 5);
+            break;
+            case 'Zessen':
+            score = (aantal[5][1] * 6);
+            break;
+            default:
+            score = 0;
+            break;
+        }
 
         //Nieuwe rij
         var row = document.createElement('tr');
@@ -276,17 +330,79 @@ function addOptions(combinaties, aantal)
         optieData.appendChild(optieNaam);
 
         //Optie Radiobox
+        var radioData = document.createElement('td');
+        var radioButton = document.createElement('input');
+        radioButton.setAttribute('type', 'radio');
+        radioButton.setAttribute('name', 'optieRadio');
+        radioButton.setAttribute('id', 'optieRadio');
+        radioButton.setAttribute('value', naam);
+
+        radioData.appendChild(radioButton);
 
         //Optie Score
-
+        var scoreData = document.createElement('td');
+        var scoreNaam = document.createTextNode(score);
+        scoreData.appendChild(scoreNaam);
 
         //Voeg alle data toe aan de rij
         row.appendChild(optieData);
+        row.appendChild(radioData);
+        row.appendChild(scoreData);
 
         //Voegt de rij toe aan de tabel
         document.getElementById('score').appendChild(row);
-        console.log(naam);
     }
+}
+
+/*  Verzend de ingevulde data en verwerkt het
+*   geen parameters
+*   geen return
+*/
+function confirmOption()
+{
+    var choice = $('input[name="optieRadio"]:checked');
+    var score = $(choice).parent().next().text();
+
+    //Voegt toe aan het scoreboard
+    for (var i = 0; i < scoreboard.length; i++) 
+    {
+        var key = scoreboard[i][0];
+        var value = scoreboard[i][1];
+
+        if((key == choice.val() && value == 0) || choice.parent().length == 0)
+        {
+            if(key == choice.val() && value == 0)
+            {
+                scoreboard[i][1] = score;
+
+                this.score += score;
+                used++;
+            }
+
+            $('#scoreboard').dialog('close');
+        }
+    }
+
+    console.log(used + ' == ' + scoreboard.length);
+    //Checkt of het spel klaar is (alle opties zijn gebruikt)
+    if(used == scoreboard.length)
+    {
+        alert('Het spel is afgelopen uw score was ' + score + ' over ' + beurt + ' beurten met een gemiddelde van ' + (score / beurt));
+    }
+    /*
+    if(choice.length > 0 || done || choice.parent().length == 0)
+    {
+        if(done)
+        {
+            alert('Gefeliciteerd, het spel is afgelopen en u heeft een score van ' + score);
+        }
+        $('#scoreboard').dialog('close');
+    }
+    else if(choice.parent().length > 0)
+    {
+        alert('U heeft geen optie gekozen!');
+    }
+    */
 }
 
 /*  Of de score optie al eens is gebruikt
