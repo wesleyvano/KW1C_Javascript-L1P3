@@ -18,12 +18,21 @@ var enabled = false;
 //Het scoreboard
 var scoreboard =
 [
+    //Normale Opties
     ['Enen', 0],
     ['Tweeën', 0],
     ['Drieën', 0],
     ['Vieren', 0],
     ['Vijven', 0],
     ['Zessen', 0],
+    //Poker Opties
+    ['Drie Gelijk', 0],
+    ['Vier Gelijk', 0],
+    ['Kleine Straat', 0],
+    ['Grote Straat', 0],
+    ['Full House', 0],
+    ['Kans', 0],
+    ['Yahtzee', 0]
 ];
 
 //Aantal gebruikte opties
@@ -42,7 +51,6 @@ function randomGetal()
 */
 function lockSteen(steen)
 {
-    //console.log(steen);
     var isLocked = locked[steen - 1];
 
     //Als de entry bestaat wordt deze verwijderd
@@ -204,6 +212,7 @@ function getGegooid()
         [6, 0]
     ];
 
+    //Vult de array met alles wat gegooid is
     for (var i = 0; i < stenen.length; i++)
     {
         var punt = parseInt($('#d' + (i + 1)).html());
@@ -230,6 +239,7 @@ function getCombinaties(gegooid)
 
         if(value > 0)
         {
+            //Toevoegen van alle combinaties
             if(key == 1 && scoreboard[0][1] == 0)
             {
                 combinaties.push('Enen');
@@ -258,6 +268,41 @@ function getCombinaties(gegooid)
             if(key == 6 && scoreboard[5][1] == 0)
             {
                 combinaties.push('Zessen');
+            }
+
+            if(getDezelfde(gegooid, 3) > 0 && scoreboard[6][1] == 0 && combinaties.indexOf('Drie Gelijk') == -1)
+            {
+                combinaties.push('Drie Gelijk');
+            }
+
+            if(getDezelfde(gegooid, 4) > 0 && scoreboard[7][1] == 0 && combinaties.indexOf('Vier Gelijk') == -1)
+            {
+                combinaties.push('Vier Gelijk');
+            }
+
+            if(getStraat(gegooid, 4) > 0 && scoreboard[8][1] == 0 && combinaties.indexOf('Kleine Straat') == -1)
+            {
+                combinaties.push('Kleine Straat');
+            }
+
+            if(getStraat(gegooid, 5) > 0 && scoreboard[9][1] == 0 && combinaties.indexOf('Grote Straat') == -1)
+            {
+                combinaties.push('Grote Straat');
+            }
+
+            if(getFullHouse(gegooid) > 0 && scoreboard[10][1] == 0 && combinaties.indexOf('Full House') == -1)
+            {
+                combinaties.push('Full House');
+            }
+
+            if(scoreboard[11][1] == 0 && combinaties.indexOf('Kans') == -1)
+            {
+                combinaties.push('Kans');
+            }
+
+            if(getDezelfde(gegooid, 5) > 0 && scoreboard[12][1] == 0 && combinaties.indexOf('Yahtzee') == -1)
+            {
+                combinaties.push('Yahtzee');
             }
         }
     }
@@ -316,6 +361,27 @@ function addOptions(combinaties, aantal)
             case 'Zessen':
             score = (aantal[5][1] * 6);
             break;
+            case 'Drie Gelijk':
+            score = getDezelfde(aantal, 3);
+            break;
+            case 'Vier Gelijk':
+            score = getDezelfde(aantal, 4);
+            break;
+            case 'Kleine Straat':
+            score = 30;
+            break;
+            case 'Grote Straat':
+            score = 40;
+            break;
+            case 'Full House':
+            score = 25;
+            break;
+            case 'Kans':
+            score = totaal;
+            break;
+            case 'Yahtzee':
+            score = 50;
+            break;
             default:
             score = 0;
             break;
@@ -354,6 +420,103 @@ function addOptions(combinaties, aantal)
     }
 }
 
+/*  Kijkt of er iets @param2 keer voorkomt
+*   @param1: Alle gegooide dobbelstenen
+*   @param2: Het aantal keer dat hetzelfde getal voor moet komen
+*   @return: De score van het getal dat @param2 keer voor komt 
+*/
+function getDezelfde(arr, keer)
+{
+    var localScore = 0;
+
+    for (var i = 0; i < arr.length; i++)
+    {
+        var getal = arr[i][0];
+        var aantal = arr[i][1];
+
+        if(aantal >= keer)
+        {
+            localScore = keer == 5 ? 50 : getal * keer;
+        }
+    }
+
+    return localScore;
+}
+
+
+/*  Kijkt of er een straat is met @param2 getallen.
+*   @param1: Alle gegooide dobbelstenen
+*   @param2: De lengte van de straat.
+*   @return: De score de straat (25 - 50)
+*/
+function getStraat(arr, groot)
+{
+    var localScore = 0;
+    var beginGetal = 0;
+    var currGetal = 0;
+
+
+    for(var i = 0; i < arr.length; i++)
+    {
+        var getal = arr[i][0];
+        var aantal = arr[i][1];
+
+        if((aantal > 0 && getal == currGetal + 1) || (aantal > 0 && beginGetal == 0))
+        {
+            if(beginGetal == 0)
+            {
+                beginGetal = getal;
+                currGetal = getal;
+            }
+            else
+            {
+                currGetal++;
+            }
+        }
+        else if(groot == 4 && aantal > 0 && (getal == 2 || 3))
+        {
+            beginGetal = getal;
+            currGetal = getal;
+        }
+    }
+
+    if(currGetal >= beginGetal + groot - 1)
+    {
+        localScore = groot == 4 ? 30 : 40;
+    }
+
+    return localScore;
+}
+
+/*  Kijkt of er full house is gegooid
+*   @param1: Een array met alle gegooide getallen
+*   @return: De score
+*/
+function getFullHouse(arr)
+{
+    var twee = false;
+    var drie = false;
+
+    for(var i = 0; i < arr.length; i++)
+    {
+        var getal = arr[i][0];
+        var aantal = arr[i][1];
+
+        if(aantal == 2)
+        {
+            twee = true;
+        }
+
+        if(aantal == 3)
+        {
+            drie = true;
+        }
+    }
+
+    return twee && drie ? 25 : 0;
+}
+
+
 /*  Verzend de ingevulde data en verwerkt het
 *   geen parameters
 *   geen return
@@ -361,7 +524,7 @@ function addOptions(combinaties, aantal)
 function confirmOption()
 {
     var choice = $('input[name="optieRadio"]:checked');
-    var score = $(choice).parent().next().text();
+    var singleScore = parseInt($(choice).parent().next().text());
 
     //Voegt toe aan het scoreboard
     for (var i = 0; i < scoreboard.length; i++) 
@@ -373,9 +536,9 @@ function confirmOption()
         {
             if(key == choice.val() && value == 0)
             {
-                scoreboard[i][1] = score;
+                scoreboard[i][1] = singleScore;
 
-                this.score += score;
+                this.score += singleScore;
                 used++;
             }
 
@@ -383,26 +546,34 @@ function confirmOption()
         }
     }
 
-    console.log(used + ' == ' + scoreboard.length);
     //Checkt of het spel klaar is (alle opties zijn gebruikt)
     if(used == scoreboard.length)
     {
         alert('Het spel is afgelopen uw score was ' + score + ' over ' + beurt + ' beurten met een gemiddelde van ' + (score / beurt));
+        //Reset Het scoreboard
+        this.scoreboard =
+        [
+            //Normale Opties
+            ['Enen', 0],
+            ['Tweeën', 0],
+            ['Drieën', 0],
+            ['Vieren', 0],
+            ['Vijven', 0],
+            ['Zessen', 0],
+            //Poker Opties
+            ['Drie Gelijk', 0],
+            ['Vier Gelijk', 0],
+            ['Kleine Straat', 0],
+            ['Grote Straat', 0],
+            ['Full House', 0],
+            ['Kans', 0],
+            ['Yahtzee', 0]
+        ];
+        this.rolls = 3;
+        this.score = 0;
+        this.beurt = 0;
+        reset();
     }
-    /*
-    if(choice.length > 0 || done || choice.parent().length == 0)
-    {
-        if(done)
-        {
-            alert('Gefeliciteerd, het spel is afgelopen en u heeft een score van ' + score);
-        }
-        $('#scoreboard').dialog('close');
-    }
-    else if(choice.parent().length > 0)
-    {
-        alert('U heeft geen optie gekozen!');
-    }
-    */
 }
 
 /*  Of de score optie al eens is gebruikt
